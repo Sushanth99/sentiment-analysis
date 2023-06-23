@@ -1,0 +1,26 @@
+{% extends "layout.html" %} {% block body %}
+<div>
+  <h3 style="text-align: center">QUERIES</h3>
+  <div class="submit" style="flex-direction: row">
+    <span class="item"><a href="/">Home</a></span>
+  </div>
+
+  <span class="query_container">
+    <div
+      class="values"
+      style="font-weight: bold; color: #1da1f2; background-color: lightgray"
+    >
+      {% for row_title in the_row_titles %}
+      <span class="values1">{{row_title}}</span>
+      {% endfor %}
+    </div>
+    {% for log_row in the_data %}
+    <div class="values">
+      {% for item in log_row %}
+      <span class="values1">{{item}}</span>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </span>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "layout.html" %} {% block body %}
+<div class="entire">
+  <div class="content">
+    <div
+      class="container"
+      style="width: 540px; margin-left: 80px; margin-top: -5px"
+    >
+      <h4 class="date">Date: {{ date }}</h4>
+      <form action="/results" method="post" class="form1">
+        <div class="param">
+          <div>Analysis Type:</div>
+          <div>
+            <!-- <span class="item">
+                <input type="radio" name="analysis_type" value="single_tweet" checked>
+                <span>Single tweet</span>
+                </span> -->
+            <span class="item">
+              <input
+                type="radio"
+                name="analysis_type"
+                value="by_keyword"
+                checked
+              />
+              <span>By Keyword</span>
+            </span>
+            <span class="item">
+              <input type="radio" name="analysis_type" value="by_username" />
+              <span>By Username</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="param">
+          <label for="tweet">Enter Text:</label>
+          <input
+            autocomplete="off"
+            autofocus
+            name="tweet"
+            placeholder="Enter text..."
+            required
+            type="text"
+          />
+        </div>
+
+        <div class="param">
+          <span class="item">Classifier:</span>
+          <select class="select" name="classifier" required>
+            <!-- <option disabled selected value="">--Classifier--</option> -->
+            <option selected value="Both">Both</option>
+            {% for classifier in classifiers %}
+            <option disabled value="{{ classifier }}">{{ classifier }}</option>
+            {% endfor %}
+          </select>
+          <span class="item">Tweet Count:</span>
+          <input
+            class="select"
+            autocomplete="off"
+            name="tweet_count"
+            id="tweet_count"
+            type="number"
+            min="50"
+            max="1000"
+            value="100"
+          />
+        </div>
+        <div class="param">
+          <span class="item" style="padding-right: 30px">From:</span>
+          <input
+            class="select"
+            type="date"
+            id="since_date"
+            name="since_date"
+            min="2007-01-01"
+            max="2023-04-24"
+          />
+          <span class="item" style="padding-right: 70px">To:</span>
+          <input
+            class="select"
+            type="date"
+            id="until_date"
+            name="until_date"
+            min="2007-01-01"
+            max="2023-04-24"
+          />
+        </div>
+        <div class="submit">
+          <button type="submit">Get Result</button>
+          {% if login %}
+          <p>
+            <a href="/queries">View past queries</a>
+            <a href="/logout">Logout</a>
+          </p>
+          {% else %}
+          <p>
+            <a href="/queries"></a><a href="/login">Login</a> to view past
+            queries
+          </p>
+          {% endif %}
+          <!-- <p><a href="/queries">View past queries</a> <a href="/login">Login</a></p> -->
+        </div>
+      </form>
+    </div>
+  </div>
+  <div>
+    <img class="image2" src="../static/data-analysis.gif" />
+  </div>
+</div>
+
+{% endblock %}

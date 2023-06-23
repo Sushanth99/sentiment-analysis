@@ -1,0 +1,63 @@
+{% extends "layout.html" %} {% block body %}
+<div style="background-color: #f6f5f7; padding-bottom: 20px">
+  <div class="entire">
+    <div>
+      <img class="image3" src="/static/wc_all.png" alt="word cloud" />
+    </div>
+    <div class="content" style="align-items: flex-start">
+      <div
+        class="container"
+        style="
+          width: 400px;
+          min-width: 400px;
+          margin-right: 120px;
+          min-height: 420px;
+        "
+      >
+        <span class="form1">
+          <h3 style="text-align: center">RESULTS</h3>
+          <div class="result1">
+            <span class="result2">Timestamp:</span>
+            <span>{{ timestamp }}</span>
+          </div>
+          <div class="result1">
+            <span class="result2">Classifier:</span>
+            <span>{{ classifier }}</span>
+          </div>
+          <div class="result1">
+            <span class="result2">Tweet:</span><span>{{ tweet }}</span>
+          </div>
+          {% for key in res %}
+          <div class="result1">
+            <span class="result2">{{ key }}:</span
+            ><span class="result3">{{ res[key] }}</span>
+          </div>
+          {% endfor %}
+          <div class="submit" style="flex-direction: row">
+            <span class="item" style="margin-right: 25px"
+              ><a href="/">Home</a></span
+            >
+            <span class="item" style="margin-left: 25px"
+              ><a href="/queries">View past queries</a></span
+            >
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="plot_div">
+    <img
+      class="plot_img"
+      src="/static/result_plot.png"
+      alt="Pie plots of results"
+      width="600"
+      height="200"
+    />
+  </div>
+</div>
+<!--<div class="result4">
+        <img class="result6" src="/static/wc_all.png" alt="word cloud" width="300" height="150">
+        <img class="result6" src="/static/wc_pos.png" alt="word cloud positive" width="300" height="150">
+        <img class="result6" src="/static/wc_neg.png" alt="word cloud negative" width="300" height="150">
+    </div>-->
+{% endblock %}

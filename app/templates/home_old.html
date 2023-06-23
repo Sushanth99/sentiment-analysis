@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h4>Date: {{ date }}</h4>
+    <form action="/results" method="post">
+        <input autocomplete="off" autofocus name="tweet" placeholder="Enter text..." required type="text">
+        <select name="classifier" required>
+            <option disabled selected>--Classifier--</option>
+            {% for classifier in classifiers %}
+            <option value="{{ classifier }}">{{ classifier }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Get Result</button>
+
+        <a href="/queries">View past queries</a>
+    </form>
+{% endblock %}

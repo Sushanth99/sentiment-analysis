@@ -1,0 +1,41 @@
+{% extends "layout.html" %} {% block body %}
+<div class="content">
+  <div class="container">
+    <h4 class="date">Date: {{ date }}</h4>
+    <form
+      action="/login"
+      method="post"
+      style="border-right: 1px solid lightgray"
+      class="form"
+    >
+      <p>{{ message }}</p>
+      <h1 style="font-size: 26px">Sign in</h1>
+      <input
+        autocomplete="off"
+        autofocus
+        name="username"
+        id="username"
+        required
+        type="text"
+        placeholder="Username"
+      />
+      <input
+        required
+        type="password"
+        name="password"
+        maxlength="12"
+        placeholder="Password"
+      />
+      <div class="submit">
+        <button type="submit">Login</button>
+        <div>New user? Register <a href="/register">here</a></div>
+        <div><a href="/">Skip Login</a></div>
+      </div>
+    </form>
+    <div>
+      <img class="image1" src="../static/twitter.gif" />
+    </div>
+  </div>
+</div>
+
+{% endblock %}

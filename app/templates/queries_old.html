@@ -1,0 +1,26 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+    <table align="center" border="5">
+        <tr>
+            <td>Unique ID</td>
+            <td>Timestamp</td>
+            <td>Tweet</td>
+            <td>Classifier</td>
+            <td>Comment</td>
+            <td>IP Address</td>
+            <td>Browser</td>
+        </tr>
+        {% for id in queries %}
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ queries[id]["timestamp"] }}</td> 
+            <td>{{ queries[id]["tweet"] }}</td>
+            <td>{{ queries[id]["classifier"] }}</td>
+            <td>{{ queries[id]["comment"] }}</td>
+            <td>{{ queries[id]["ip_address"] }}</td>
+            <td>{{ queries[id]["browser"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

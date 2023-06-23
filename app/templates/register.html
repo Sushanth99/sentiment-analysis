@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% block body %}
+<div class="content">
+  <div class="container">
+    <div>
+      <img class="image1" src="../static/twitter.gif" />
+    </div>
+    <h4 class="date">Date: {{ date }}</h4>
+    <form
+      action="/register"
+      method="post"
+      style="border-left: 1px solid lightgray"
+      class="form"
+    >
+      <p>{{ message }}</p>
+      <h1 style="font-size: 25px">Sign Up</h1>
+      <input
+        autocomplete="off"
+        autofocus
+        name="username"
+        id="username"
+        required
+        type="text"
+        placeholder="Username"
+      />
+      <input
+        required
+        type="password"
+        name="password"
+        maxlength="12"
+        placeholder="Password"
+      />
+      <div class="submit">
+        <button type="submit">Register</button>
+        <p><a href="/">Skip Login, Go to Home!</a></p>
+      </div>
+    </form>
+  </div>
+
+  {% endblock %}
+</div>

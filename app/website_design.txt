@@ -1,0 +1,4 @@
+User can perform analysis on:
+    1. Single tweet (options: text)
+    2. By user (options: username, tweet_count, since_date, until_date)
+    3. By keywords (options: keyword, tweet_count, since_date, until_date)

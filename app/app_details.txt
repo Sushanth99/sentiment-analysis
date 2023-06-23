@@ -1,0 +1,104 @@
+
+## 1. Creating a database
+mysql -u root -p
+
+create user 'testuser'@'%' identified by 'testpasswd';
+
+create database testDB;
+
+grant all privileges on testDB.* to 'testuser'@'%';
+
+create table log (
+id int auto_increment primary key,
+ts timestamp default current_timestamp,
+tweet text not null,
+classifier varchar(32) not null,
+comment varchar(128),
+ip_address varchar(16),
+browser varchar(128),
+result json);
+
+## 2. Connecting the python file and the database
+The log_request function is used to store the requests into the mysql  
+testDB's log table.
+
+## 3. Take the request from the home page and perform analysis.
+    If single_tweet: Send it to the pipeline and get results, display
+                     on results page
+    If by_user: Get tweets, perform analysis, get results, display on 
+                '/results' page
+    If by_keyword: Get tweets, perform analysis, get results, display
+                on '/results' page 
+    
+    RESULTS:
+    1. single_tweet:
+        a. Display tweet:
+        b. Display sentiment: positive or negative
+        c. Display sarcasm: sarcastic or not 
+    2. by_user or by_keyword:
+        a. Display user or keyword.
+        b. Display sentiment percentage: Combining sentiment and sarcasm.
+
+## 4. Create user_login table:
+
+create table user_login (
+username varchar(16) primary key,
+password varchar(12));
+
+INSERT INTO `user_login` (`username`, `password`) VALUES ('sindhu', 'chikki@01');
+INSERT INTO `user_login` (`username`, `password`) VALUES ('sushanth', 'chinnu@99');
+INSERT INTO `user_login` (`username`, `password`) VALUES ('chutki', 'S29@QQad@b&!');
+
+## 5. Preprocessing Steps:
+    1. Removing links 
+    2. Replacing hastags with words
+    3. Replacing emoji's with words 
+    4. Removing punctuation: '_', '.', ':'
+    5. Tokenizing tweet 
+    6. Padding tweets so that length of each tweet's list of words is 35
+
+## 6. User specific log:
+create table user_queries (
+id int auto_increment primary key,
+ts timestamp default current_timestamp,
+username varchar(16),
+tweet text not null,
+classifier varchar(32) not null,
+comment varchar(128),
+ip_address varchar(16),
+browser varchar(128),
+result json);
+
+## Comments:
+1. Do we need another timestamp for the each entry: one for request time from the
+user and one for the logging time automatically set by the database.
+2. Need to add another column supporting json for input parameters.
+3. Need to add another column supporting json for scraped tweets.
+4. Add advanced search feature with instructions to using twitter's advanced search.
+5. Change the labels of sarcasm in the pie charts.
+
+# Issues:
+1. req.user_agent.browser is not working.
+2. The sarcasm classifier is not accurate.
+3. Remove links from tweets. (solved)
+4. Use only nouns, adjectives, and verbs in the word cloud.
+
+
+
+# libraries
+1. tensorflow (2.12.0): python3 -m pip install tensorflow
+2. Flask (2.2.3): pip install -U Flask 
+3. mysql: python -m pip install mysql-connector-python
+4. emoji: pip install emoji
+5. snscrape: pip3 install snscrape
+6. matplotlib: conda install -c conda-forge matplotlib
+7. wordcloud: conda install -c conda-forge wordcloud
+8. pymysql: pip install pymysql
+9. cryptography: pip install cryptography
+10. Selenium: pip install selenium
+11. webdriver-manager: pip install webdriver-manager
+12. contractions: pip install contractions
+
+
+# Pythonanywhere
+password: deploymentpasswd@123
